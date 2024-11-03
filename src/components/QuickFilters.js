@@ -5,8 +5,9 @@ import ExperienceFilter from './ExperienceFilter';
 import SkillsFilter from './SkillsFilter';
 import JobPreferenceFilter from './JobPreferenceFilter';
 import OtherPreferencesFilter from './OtherPreferencesFilter';
+import AvailabilityFilter from './AvailabilityFilter';
 
-function QuickFilters({ filters, onFilterChange, onOpenAllFilters }) {
+function QuickFilters({ filters, dayAvailability, onFilterChange, onDayAvailabilityChange, onOpenAllFilters }) {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (dropdown) => {
@@ -31,6 +32,22 @@ function QuickFilters({ filters, onFilterChange, onOpenAllFilters }) {
             </div>
           )}
         </div>
+
+        {/* Availability Filter */}
+        <div className="filter-group">
+          <button className="filter-button" onClick={() => toggleDropdown("Day Availability")}>
+            Weekly Availability ▼
+          </button>
+          {openDropdown === "Day Availability" && (
+            <div className="dropdown-menu">
+              <AvailabilityFilter
+                dayAvailability={dayAvailability}
+                onDayAvailabilityChange={onDayAvailabilityChange}
+              />
+            </div>
+          )}
+        </div>
+
 
         {/* Date Posted Filter */}
         <div className="filter-group">

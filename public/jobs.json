@@ -130,5 +130,112 @@
     "topApplicant": false,
     "description": "Develop and maintain backend systems for large-scale applications. Work remotely with a team that values innovation and reliability.",
     "datePosted": "2024-11-01"
+  },  
+  {
+    "title": "Customer Support Specialist",
+    "company": "HelpHub",
+    "location": "Miami, FL",
+    "type": "On-Site",
+    "experienceRange": { "min": 1, "max": 3 },
+    "salaryRange": { "min": 40000, "max": 55000 },
+    "schedule": {
+      "monday": "On-Site",
+      "tuesday": "On-Site",
+      "wednesday": "On-Site",
+      "saturday": "On-Site",
+      "sunday": "On-Site"
+    },
+    "skills": ["Customer Service", "CRM", "Communication", "Problem Solving"],
+    "verified": false,
+    "easyApply": true,
+    "fairChance": false,
+    "topApplicant": false,
+    "description": "Provide excellent customer support during weekends and weekdays. Work on-site in a collaborative support team.",
+    "datePosted": "2024-06-20"
+  },
+  {
+    "title": "Graphic Designer",
+    "company": "Design Studio",
+    "location": "Austin, TX",
+    "type": "Hybrid",
+    "experienceRange": { "min": 2, "max": 5 },
+    "salaryRange": { "min": 60000, "max": 80000 },
+    "schedule": {
+      "monday": "Remote",
+      "tuesday": "On-Site",
+      "wednesday": "Remote",
+      "thursday": "On-Site",
+      "friday": "Remote"
+    },
+    "skills": ["Adobe Photoshop", "Illustrator", "UI/UX", "Branding"],
+    "verified": true,
+    "easyApply": false,
+    "fairChance": true,
+    "topApplicant": true,
+    "description": "Design visual assets for branding and digital content. Flexible hybrid schedule with options for remote work on certain days.",
+    "datePosted": "2024-07-14"
+  },
+  {
+    "title": "IT Support Technician",
+    "company": "TechSecure",
+    "location": "Denver, CO",
+    "type": "Hybrid",
+    "experienceRange": { "min": 1, "max": 4 },
+    "salaryRange": { "min": 45000, "max": 60000 },
+    "schedule": {
+      "monday": "Remote",
+      "tuesday": "On-Site",
+      "wednesday": "On-Site",
+      "saturday": "On-Site"
+    },
+    "skills": ["Technical Support", "Networking", "Hardware", "Troubleshooting"],
+    "verified": false,
+    "easyApply": true,
+    "fairChance": true,
+    "topApplicant": false,
+    "description": "Provide on-site and remote support for IT infrastructure. Hybrid role with weekend work on Saturdays.",
+    "datePosted": "2024-08-30"
+  },
+  {
+    "title": "Operations Manager",
+    "company": "LogiCorp",
+    "location": "Houston, TX",
+    "type": "On-Site",
+    "experienceRange": { "min": 5, "max": 10 },
+    "salaryRange": { "min": 85000, "max": 120000 },
+    "schedule": {
+      "tuesday": "On-Site",
+      "wednesday": "On-Site",
+      "thursday": "On-Site",
+      "saturday": "On-Site",
+      "sunday": "On-Site"
+    },
+    "skills": ["Operations Management", "Logistics", "Leadership", "Supply Chain"],
+    "verified": true,
+    "easyApply": false,
+    "fairChance": false,
+    "topApplicant": true,
+    "description": "Manage daily operations and logistics. Work on-site with weekend shifts required for peak periods.",
+    "datePosted": "2024-09-15"
+  },
+  {
+    "title": "Weekend Shift Nurse",
+    "company": "City Health Center",
+    "location": "New York, NY",
+    "type": "On-Site",
+    "experienceRange": { "min": 2, "max": 6 },
+    "salaryRange": { "min": 70000, "max": 90000 },
+    "schedule": {
+      "friday": "On-Site",
+      "saturday": "On-Site",
+      "sunday": "On-Site"
+    },
+    "skills": ["Nursing", "Patient Care", "Medical Knowledge", "CPR"],
+    "verified": true,
+    "easyApply": true,
+    "fairChance": true,
+    "topApplicant": false,
+    "description": "Provide high-quality patient care on weekend shifts. Must be available to work Fridays through Sundays.",
+    "datePosted": "2024-10-05"
   }
 ]

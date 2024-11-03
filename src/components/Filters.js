@@ -1,12 +1,11 @@
-// src/components/Filters.js
 import React, { useState } from 'react';
 import DateRangeFilter from './DateRangeFilter';
 import ExperienceFilter from './ExperienceFilter';
 import SkillsFilter from './SkillsFilter';
-import JobPreferenceFilter from './JobPreferenceFilter';
 import OtherPreferencesFilter from './OtherPreferencesFilter';
+import AvailabilityFilter from './AvailabilityFilter';
 
-function Filters({ filters, onFilterChange }) {
+function Filters({ filters, dayAvailability, onFilterChange, onDayAvailabilityChange }) {
   const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState(filters.skills || []);
 
@@ -74,7 +73,7 @@ function Filters({ filters, onFilterChange }) {
           id="job-preference"
           name="jobPreference"
           value={filters.jobPreference}
-          onChange={handleChange}
+          onChange={(e) => onFilterChange("jobPreference", e.target.value)}
         >
           <option value="all">All</option>
           <option value="on-site">On-Site</option>
@@ -83,7 +82,9 @@ function Filters({ filters, onFilterChange }) {
         </select>
       </div>
 
-
+      {/* Day Availability Filter */}
+      <AvailabilityFilter dayAvailability={dayAvailability} onDayAvailabilityChange={onDayAvailabilityChange} />
+      
       <div>
         <label htmlFor="experience">Experience</label>
         <ExperienceFilter

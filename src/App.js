@@ -8,6 +8,7 @@ import './App.css';
 
 function App() {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     keyword: '',
     location: '',
@@ -21,7 +22,16 @@ function App() {
     hasVerifications: false,
     easyApply: false,
     fairChance: false,
-    skills: [], // Ensure skills is defined as an empty array
+    skills: []
+  });
+  const [dayAvailability, setDayAvailability] = useState({
+    monday: 'available',
+    tuesday: 'available',
+    wednesday: 'available',
+    thursday: 'available',
+    friday: 'available',
+    saturday: 'available',
+    sunday: 'available'
   });
   const [selectedJob, setSelectedJob] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
@@ -29,8 +39,14 @@ function App() {
   useEffect(() => {
     fetch('/jobs.json')
       .then(response => response.json())
-      .then(data => setJobs(data))
-      .catch(error => console.error('Error fetching jobs:', error));
+      .then(data => {
+        setJobs(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching jobs:', error);
+        setLoading(false);
+      });
   }, []);
 
   const handleFilterChange = (name, value) => {
@@ -38,6 +54,11 @@ function App() {
       ...prevFilters,
       [name]: value,
     }));
+    console.log("Filters updated:", name, value);
+  };
+
+  const handleDayAvailabilityChange = (day, status) => {
+    setDayAvailability(prev => ({ ...prev, [day]: status }));
   };
 
   const handleJobClick = (job) => {
@@ -45,68 +66,55 @@ function App() {
   };
 
   const toggleFilters = () => {
-    setShowFilters(prevShowFilters => !prevShowFilters); // Toggle visibility
+    setShowFilters(!showFilters);
   };
 
   const filteredJobs = jobs.filter(job => {
+    const { keyword, location, jobPreference, experience, minSalary, maxSalary, skills, startDate, endDate } = filters;
+
     // Keyword filter
-    if (filters.keyword && !job.title.toLowerCase().includes(filters.keyword.toLowerCase())) {
-      return false;
-    }
-  
+    if (keyword && !job.title.toLowerCase().includes(keyword.toLowerCase())) return false;
+
     // Location filter
-    if (filters.location && !job.location.toLowerCase().includes(filters.location.toLowerCase())) {
-      return false;
-    }
-  
+    if (location && !job.location.toLowerCase().includes(location.toLowerCase())) return false;
+
     // Job preference filter
-    if (filters.jobPreference !== 'all' && job.type.toLowerCase() !== filters.jobPreference.toLowerCase()) {
-      return false;
-    }
-  
+    if (jobPreference !== 'all' && job.type.toLowerCase() !== jobPreference.toLowerCase()) return false;
+
     // Experience filter
-    if (filters.experience && (job.experienceRange.min > filters.experience || job.experienceRange.max < filters.experience)) {
-      return false;
-    }
-  
+    const jobExpMin = parseInt(job.experienceRange.min);
+    const jobExpMax = parseInt(job.experienceRange.max);
+    const userExperience = parseInt(experience);
+    if (experience && (userExperience < jobExpMin || userExperience > jobExpMax)) return false;
+
     // Salary range filter
-    if (filters.minSalary && job.salaryRange.min < filters.minSalary) {
-      return false;
-    }
-    if (filters.maxSalary && job.salaryRange.max > filters.maxSalary) {
-      return false;
-    }
-  
-    // Checkboxes
-    if (filters.topApplicant && !job.topApplicant) return false;
-    if (filters.hasVerifications && !job.verified) return false;
-    if (filters.easyApply && !job.easyApply) return false;
-    if (filters.fairChance && !job.fairChance) return false;
-  
+    const jobSalaryMin = parseInt(job.salaryRange.min);
+    const jobSalaryMax = parseInt(job.salaryRange.max);
+    if (minSalary && jobSalaryMin < parseInt(minSalary)) return false;
+    if (maxSalary && jobSalaryMax > parseInt(maxSalary)) return false;
+
     // Skills filter
-    if (filters.skills.length > 0) {
+    if (skills.length > 0) {
       const jobSkillsLower = job.skills.map(skill => skill.toLowerCase());
-      const filterSkillsLower = filters.skills.map(skill => skill.toLowerCase());
-      const hasMatchingSkills = filterSkillsLower.every(skill => jobSkillsLower.includes(skill));
-      if (!hasMatchingSkills) {
+      const hasMatchingSkills = skills.every(skill => jobSkillsLower.includes(skill.toLowerCase()));
+      if (!hasMatchingSkills) return false;
+    }
+
+    // Date Posted filter
+    const jobDate = new Date(job.datePosted);
+    if (startDate && jobDate < new Date(startDate)) return false;
+    if (endDate && jobDate > new Date(endDate)) return false;
+
+    // Day availability filter
+    const days = Object.keys(dayAvailability);
+    for (const day of days) {
+      if (dayAvailability[day] === 'unavailable' && job.schedule[day]) {
         return false;
       }
     }
-  
-    // **Date Posted filter**
-    if (filters.startDate || filters.endDate) {
-      const jobDate = new Date(job.datePosted);
-      if (filters.startDate && jobDate < new Date(filters.startDate)) {
-        return false;
-      }
-      if (filters.endDate && jobDate > new Date(filters.endDate)) {
-        return false;
-      }
-    }
-  
+
     return true;
   });
-  
 
   return (
     <div className="App">
@@ -115,13 +123,19 @@ function App() {
       <div className="main-container">
         <QuickFilters
           filters={filters}
+          dayAvailability={dayAvailability}
           onFilterChange={handleFilterChange}
+          onDayAvailabilityChange={handleDayAvailabilityChange}
           onOpenAllFilters={toggleFilters}
         />
 
         <div className="main-content">
-          <div className="job-listings-panel">            
-            <JobListings jobs={filteredJobs} onJobClick={handleJobClick} />
+          <div className="job-listings-panel">
+            {loading ? (
+              <p>Loading jobs...</p>
+            ) : (
+              <JobListings jobs={filteredJobs} onJobClick={handleJobClick} />
+            )}
           </div>
 
           <div className="job-details-panel">
@@ -135,7 +149,12 @@ function App() {
 
         {showFilters && (
           <div className={`filters-overlay ${showFilters ? "show" : ""}`}>
-            <Filters filters={filters} onFilterChange={handleFilterChange} />
+            <Filters
+              filters={filters}
+              dayAvailability={dayAvailability}
+              onFilterChange={handleFilterChange}
+              onDayAvailabilityChange={handleDayAvailabilityChange}
+            />
             <button className="close-filters-button" onClick={toggleFilters}>Close</button>
           </div>
         )}

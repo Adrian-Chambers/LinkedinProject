@@ -5,7 +5,7 @@ import SkillsFilter from './SkillsFilter';
 import OtherPreferencesFilter from './OtherPreferencesFilter';
 import AvailabilityFilter from './AvailabilityFilter';
 
-function Filters({ filters, dayAvailability, onFilterChange, onDayAvailabilityChange }) {
+function Filters({ filters, dayAvailability, hybridDayPreference, onFilterChange, onDayAvailabilityChange, onHybridDayPreferenceChange }) {
   const [skillInput, setSkillInput] = useState('');
   const [skills, setSkills] = useState(filters.skills || []);
 
@@ -82,8 +82,14 @@ function Filters({ filters, dayAvailability, onFilterChange, onDayAvailabilityCh
         </select>
       </div>
 
-      {/* Day Availability Filter */}
-      <AvailabilityFilter dayAvailability={dayAvailability} onDayAvailabilityChange={onDayAvailabilityChange} />
+      <AvailabilityFilter
+        dayAvailability={dayAvailability}
+        hybridDayPreference={hybridDayPreference}
+        jobPreference={filters.jobPreference}
+        onDayAvailabilityChange={onDayAvailabilityChange}
+        onHybridDayPreferenceChange={onHybridDayPreferenceChange}
+      />
+
       
       <div>
         <label htmlFor="experience">Experience</label>

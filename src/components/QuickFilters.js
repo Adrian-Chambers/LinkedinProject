@@ -7,7 +7,7 @@ import JobPreferenceFilter from './JobPreferenceFilter';
 import OtherPreferencesFilter from './OtherPreferencesFilter';
 import AvailabilityFilter from './AvailabilityFilter';
 
-function QuickFilters({ filters, dayAvailability, onFilterChange, onDayAvailabilityChange, onOpenAllFilters }) {
+function QuickFilters({ filters, dayAvailability, hybridDayPreference, onFilterChange, onDayAvailabilityChange, onHybridDayPreferenceChange, onOpenAllFilters }) {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (dropdown) => {
@@ -42,9 +42,12 @@ function QuickFilters({ filters, dayAvailability, onFilterChange, onDayAvailabil
             <div className="dropdown-menu">
               <AvailabilityFilter
                 dayAvailability={dayAvailability}
+                hybridDayPreference={hybridDayPreference}
+                jobPreference={filters.jobPreference}
                 onDayAvailabilityChange={onDayAvailabilityChange}
+                onHybridDayPreferenceChange={onHybridDayPreferenceChange}
               />
-            </div>
+          </div>
           )}
         </div>
 

@@ -83,7 +83,7 @@ function App() {
     if (filters.easyApply && !job.easyApply) return false;
     if (filters.fairChance && !job.fairChance) return false;
   
-    // **Skills filter**
+    // Skills filter
     if (filters.skills.length > 0) {
       const jobSkillsLower = job.skills.map(skill => skill.toLowerCase());
       const filterSkillsLower = filters.skills.map(skill => skill.toLowerCase());
@@ -93,8 +93,20 @@ function App() {
       }
     }
   
+    // **Date Posted filter**
+    if (filters.startDate || filters.endDate) {
+      const jobDate = new Date(job.datePosted);
+      if (filters.startDate && jobDate < new Date(filters.startDate)) {
+        return false;
+      }
+      if (filters.endDate && jobDate > new Date(filters.endDate)) {
+        return false;
+      }
+    }
+  
     return true;
   });
+  
 
   return (
     <div className="App">

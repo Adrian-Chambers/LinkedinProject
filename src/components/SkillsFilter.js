@@ -1,17 +1,19 @@
-// src/components/SkillsFilter.js
 import React, { useState } from 'react';
 
 function SkillsFilter({ skills, onChange }) {
   const [skillInput, setSkillInput] = useState('');
 
+  const handleAddSkill = () => {
+    if (skillInput.trim() && !skills.includes(skillInput.trim())) {
+      onChange([...skills, skillInput.trim()]);
+      setSkillInput(''); // Clear input after adding
+    }
+  };
+
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && skillInput.trim()) {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      // Add skill if it doesn't already exist
-      if (!skills.includes(skillInput.trim())) {
-        onChange([...skills, skillInput.trim()]);
-      }
-      setSkillInput('');
+      handleAddSkill(); // Add skill on Enter key press as well
     }
   };
 
@@ -25,17 +27,16 @@ function SkillsFilter({ skills, onChange }) {
       <input
         type="text"
         value={skillInput}
-        placeholder="Type a skill and press Enter"
+        placeholder="Type a skill and press Enter or Add"
         onChange={(e) => setSkillInput(e.target.value)}
         onKeyDown={handleKeyDown}
       />
+      <button onClick={handleAddSkill}>Add Skill</button>
       <div className="skills-list">
         {skills.map((skill, index) => (
           <span key={index} className="skill-tag">
             {skill}
-            <button type="button" onClick={() => handleRemoveSkill(skill)}>
-              ✕
-            </button>
+            <button type="button" onClick={() => handleRemoveSkill(skill)}>✕</button>
           </span>
         ))}
       </div>

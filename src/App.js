@@ -7,6 +7,10 @@ import QuickFilters from './components/QuickFilters';
 import './App.css';
 
 function App() {
+  const [savedFilters, setSavedFilters] = useState(() => {
+    const saved = localStorage.getItem('savedFilters');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -82,7 +86,7 @@ function App() {
   };
 
   const filteredJobs = jobs.filter(job => {
-    const { keyword, location, jobPreference, experience, minSalary, maxSalary, skills, startDate, endDate } = filters;
+    const { keyword, location, jobPreference, experience, minSalary, maxSalary, skills, startDate, endDate, topApplicant, hasVerifications, easyApply, fairChance } = filters;
   
     // Keyword filter
     if (keyword && !job.title.toLowerCase().includes(keyword.toLowerCase())) return false;
@@ -90,7 +94,7 @@ function App() {
     // Location filter
     if (location && !job.location.toLowerCase().includes(location.toLowerCase())) return false;
   
-    // Job preference filter
+    // Job preference filter (on-site, remote, hybrid, all)
     if (jobPreference !== 'all' && job.type.toLowerCase() !== jobPreference.toLowerCase()) return false;
   
     // Experience filter
@@ -117,30 +121,74 @@ function App() {
     if (startDate && jobDate < new Date(startDate)) return false;
     if (endDate && jobDate > new Date(endDate)) return false;
   
-    // Day availability filter logic for Hybrid
+    // Day availability filter logic
     if (jobPreference === 'hybrid') {
-      const days = Object.keys(dayAvailability);
-  
+      // Apply hybridDayPreference only if jobPreference is set to "hybrid"
+      const days = Object.keys(hybridDayPreference);
       for (const day of days) {
         const userDayPref = hybridDayPreference[day];
         const jobDayType = job.schedule[day];
   
-        // If the user is unavailable on a day that the job has a requirement, filter it out
+        // Only filter out if user is unavailable on a day the job actually requires
         if (userDayPref === 'Unavailable' && jobDayType) {
           return false;
         }
   
-        // If the user has a specific preference (Remote or On-Site) and the job's requirement doesn't match, filter it out
+        // If user has a specific preference (Remote or On-Site) and job's schedule doesn't match, filter it out
         if (userDayPref !== 'No Preference' && jobDayType && userDayPref !== jobDayType) {
           return false;
         }
+      }
+    } else {
+      // Apply dayAvailability for other job preferences ("on-site", "remote", "all")
+      const days = Object.keys(dayAvailability);
+      for (const day of days) {
+        const userDayAvailability = dayAvailability[day];
+        const jobDayRequirement = job.schedule[day];
   
-        // If the job has no schedule requirement for that day, ignore it
+        // If the user is unavailable on a required job day, filter it out
+        if (userDayAvailability === 'unavailable' && jobDayRequirement) {
+          return false;
+        }
       }
     }
   
+    // Other Preferences Filters
+    if (topApplicant && !job.topApplicant) return false;
+    if (hasVerifications && !job.verified) return false;
+    if (easyApply && !job.easyApply) return false;
+    if (fairChance && !job.fairChance) return false;
+  
     return true;
   });
+  
+  
+
+    // Save filter settings
+    const handleSaveFilters = (filters, dayAvailability, hybridDayPreference) => {
+      const filterName = prompt("Enter a name for this filter:", "My Filter");
+  
+      if (filterName) {
+        const newFilter = { filterName, filters, dayAvailability, hybridDayPreference };
+        const updatedSavedFilters = [...savedFilters, newFilter];
+  
+        setSavedFilters(updatedSavedFilters);
+        localStorage.setItem('savedFilters', JSON.stringify(updatedSavedFilters));
+      }
+    };
+  
+    const handleApplySavedFilter = (savedFilter) => {
+      setFilters(savedFilter.filters);
+      setDayAvailability(savedFilter.dayAvailability);
+      setHybridDayPreference(savedFilter.hybridDayPreference);
+    };
+  
+    const handleDeleteSavedFilter = (filterName) => {
+      const updatedFilters = savedFilters.filter(filter => filter.filterName !== filterName);
+      setSavedFilters(updatedFilters);
+      localStorage.setItem('savedFilters', JSON.stringify(updatedFilters));
+    };
+  
   
   
   return (
@@ -185,8 +233,12 @@ function App() {
               onFilterChange={handleFilterChange}
               onDayAvailabilityChange={handleDayAvailabilityChange}
               onHybridDayPreferenceChange={handleHybridDayPreferenceChange}
+              onSaveFilters={handleSaveFilters}
+              savedFilters={savedFilters}
+              onApplySavedFilter={handleApplySavedFilter}
+              onDeleteSavedFilter={handleDeleteSavedFilter}
+              onCloseFilters={toggleFilters}
             />
-            <button className="close-filters-button" onClick={toggleFilters}>Close</button>
           </div>
         )}
       </div>

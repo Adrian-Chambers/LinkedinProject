@@ -5,34 +5,30 @@ import SkillsFilter from './SkillsFilter';
 import OtherPreferencesFilter from './OtherPreferencesFilter';
 import AvailabilityFilter from './AvailabilityFilter';
 
-function Filters({ filters, dayAvailability, hybridDayPreference, onFilterChange, onDayAvailabilityChange, onHybridDayPreferenceChange }) {
-  const [skillInput, setSkillInput] = useState('');
-  const [skills, setSkills] = useState(filters.skills || []);
-
+function Filters({
+  filters,
+  dayAvailability,
+  hybridDayPreference,
+  onFilterChange,
+  onDayAvailabilityChange,
+  onHybridDayPreferenceChange,
+  onSaveFilters,
+  savedFilters,
+  onApplySavedFilter,
+  onDeleteSavedFilter,
+  onCloseFilters
+}) {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     onFilterChange(name, type === 'checkbox' ? checked : value);
   };
 
-  const handleSkillInputKeyDown = (e) => {
-    if (e.key === 'Enter' && skillInput.trim()) {
-      e.preventDefault();
-      if (!skills.includes(skillInput.trim())) {
-        setSkills([...skills, skillInput.trim()]);
-        onFilterChange('skills', [...skills, skillInput.trim()]);
-      }
-      setSkillInput('');
-    }
-  };
-
-  const handleRemoveSkill = (skillToRemove) => {
-    const updatedSkills = skills.filter((skill) => skill !== skillToRemove);
-    setSkills(updatedSkills);
-    onFilterChange('skills', updatedSkills);
-  };
-
   return (
-    <aside className="filters" style={{ padding: "20px", maxWidth: "300px" }}>
+    <aside className="filters" style={{ padding: "20px", maxWidth: "300px", position: "relative" }}>
+      {/* "X" Close Button */}
+      <button className="close-filters-x" onClick={onCloseFilters}>×</button>
+
+
       <h3>All Filters</h3>
 
       <div>
@@ -136,6 +132,26 @@ function Filters({ filters, dayAvailability, hybridDayPreference, onFilterChange
           preferences={filters}
           onChange={onFilterChange}
         />
+      </div>
+
+      {/* Save Filters and Saved Filters Section */}
+      <div className="save-filters-section">
+        <button className="save-filters-button" onClick={() => onSaveFilters(filters, dayAvailability, hybridDayPreference)}>
+          Save Filters
+        </button>
+
+        <div className="saved-filters">
+          <h4>Saved Filters</h4>
+          <ul>
+            {savedFilters.map((savedFilter, index) => (
+              <li key={index}>
+                <span>{savedFilter.filterName}</span>
+                <button onClick={() => onApplySavedFilter(savedFilter)}>Apply</button>
+                <button onClick={() => onDeleteSavedFilter(savedFilter.filterName)}>Delete</button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </aside>
   );

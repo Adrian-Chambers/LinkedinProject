@@ -6,7 +6,6 @@ function AvailabilityFilter({ dayAvailability, hybridDayPreference, jobPreferenc
   
     return (
       <div className="day-availability">
-        <h3>Day Availability</h3>
         {daysOfWeek.map(day => (
           <div key={day} className="day-availability-item">
             <label htmlFor={day}>{day.charAt(0).toUpperCase() + day.slice(1)}</label>

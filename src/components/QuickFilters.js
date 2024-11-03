@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import DateRangeFilter from './DateRangeFilter';
 import ExperienceFilter from './ExperienceFilter';
 import SkillsFilter from './SkillsFilter';
+import JobPreferenceFilter from './JobPreferenceFilter';
+import OtherPreferencesFilter from './OtherPreferencesFilter';
 
 function QuickFilters({ filters, onFilterChange, onOpenAllFilters }) {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -14,16 +16,18 @@ function QuickFilters({ filters, onFilterChange, onOpenAllFilters }) {
   return (
     <div className="quick-filters">
       <div className="filters-container">
+        
+        {/* Job Preference Filter */}
         <div className="filter-group">
           <button className="filter-button" onClick={() => toggleDropdown("Job Preference")}>
             Job Preference ▼
           </button>
           {openDropdown === "Job Preference" && (
             <div className="dropdown-menu">
-              <div className="dropdown-item">All</div>
-              <div className="dropdown-item">On-Site</div>
-              <div className="dropdown-item">Remote</div>
-              <div className="dropdown-item">Hybrid</div>
+              <JobPreferenceFilter
+                jobPreference={filters.jobPreference}
+                onChange={onFilterChange}
+              />
             </div>
           )}
         </div>
@@ -107,34 +111,18 @@ function QuickFilters({ filters, onFilterChange, onOpenAllFilters }) {
 
       {/* Other Preferences Filter */}
       <div className="filter-group">
-        <button className="filter-button" onClick={() => toggleDropdown("Other Preferences")}>
-          Other Preferences ▼
-        </button>
-        {openDropdown === "Other Preferences" && (
-          <div className="dropdown-menu">
-            <div className="dropdown-item">
-              <label>
-                <input type="checkbox" /> Top Applicant Jobs
-              </label>
+          <button className="filter-button" onClick={() => toggleDropdown("Other Preferences")}>
+            Other Preferences ▼
+          </button>
+          {openDropdown === "Other Preferences" && (
+            <div className="dropdown-menu">
+              <OtherPreferencesFilter
+                preferences={filters}
+                onChange={onFilterChange}
+              />
             </div>
-            <div className="dropdown-item">
-              <label>
-                <input type="checkbox" /> Has Verifications
-              </label>
-            </div>
-            <div className="dropdown-item">
-              <label>
-                <input type="checkbox" /> Easy Apply
-              </label>
-            </div>
-            <div className="dropdown-item">
-              <label>
-                <input type="checkbox" /> Fair Chance Employer
-              </label>
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
       {/* All Filters Button */}
       <button className="filter-button" onClick={onOpenAllFilters}>

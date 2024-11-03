@@ -31,7 +31,7 @@ function JobDetails({ job }) {
             <span key={index} className="skill-tag">{skill}</span>
           ))}
         </div>
-      </div>
+      </div><br />
 
       {/* Additional Preferences */}
       <div className="job-details-preferences">

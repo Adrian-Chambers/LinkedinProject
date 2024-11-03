@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import DateRangeFilter from './DateRangeFilter';
 import ExperienceFilter from './ExperienceFilter';
 import SkillsFilter from './SkillsFilter';
+import JobPreferenceFilter from './JobPreferenceFilter';
+import OtherPreferencesFilter from './OtherPreferencesFilter';
 
 function Filters({ filters, onFilterChange }) {
   const [skillInput, setSkillInput] = useState('');
@@ -81,10 +83,14 @@ function Filters({ filters, onFilterChange }) {
         </select>
       </div>
 
-      <ExperienceFilter
-        experience={filters.experience}
-        onChange={onFilterChange}
-      />
+
+      <div>
+        <label htmlFor="experience">Experience</label>
+        <ExperienceFilter
+          experience={filters.experience}
+          onChange={onFilterChange}
+        />
+      </div>
 
       <div>
         <label>Salary Range</label>
@@ -109,59 +115,20 @@ function Filters({ filters, onFilterChange }) {
         </div>
       </div>
 
-      <SkillsFilter
-        skills={filters.skills}
-        onChange={(updatedSkills) => onFilterChange('skills', updatedSkills)}
-      />
+      <div>
+        <label>Skills</label>
+        <SkillsFilter
+          skills={filters.skills}
+          onChange={(updatedSkills) => onFilterChange('skills', updatedSkills)}
+        />
+      </div>
 
       <div>
         <label>Other Preferences</label>
-        <div className="checkbox-group" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input
-              type="checkbox"
-              id="top-applicant"
-              name="topApplicant"
-              checked={filters.topApplicant}
-              onChange={handleChange}
-              style={{ marginRight: "6px" }}
-            />
-            <label htmlFor="top-applicant" style={{ margin: 0 }}>Top Applicant Jobs</label>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input
-              type="checkbox"
-              id="has-verifications"
-              name="hasVerifications"
-              checked={filters.hasVerifications}
-              onChange={handleChange}
-              style={{ marginRight: "6px" }}
-            />
-            <label htmlFor="has-verifications" style={{ margin: 0 }}>Has Verifications</label>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input
-              type="checkbox"
-              id="easy-apply"
-              name="easyApply"
-              checked={filters.easyApply}
-              onChange={handleChange}
-              style={{ marginRight: "6px" }}
-            />
-            <label htmlFor="easy-apply" style={{ margin: 0 }}>Easy Apply</label>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input
-              type="checkbox"
-              id="fair-chance"
-              name="fairChance"
-              checked={filters.fairChance}
-              onChange={handleChange}
-              style={{ marginRight: "6px" }}
-            />
-            <label htmlFor="fair-chance" style={{ margin: 0 }}>Fair Chance Employer</label>
-          </div>
-        </div>
+        <OtherPreferencesFilter
+          preferences={filters}
+          onChange={onFilterChange}
+        />
       </div>
     </aside>
   );

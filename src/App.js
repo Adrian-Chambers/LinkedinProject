@@ -53,22 +53,22 @@ function App() {
     if (filters.keyword && !job.title.toLowerCase().includes(filters.keyword.toLowerCase())) {
       return false;
     }
-
+  
     // Location filter
     if (filters.location && !job.location.toLowerCase().includes(filters.location.toLowerCase())) {
       return false;
     }
-
+  
     // Job preference filter
     if (filters.jobPreference !== 'all' && job.type.toLowerCase() !== filters.jobPreference.toLowerCase()) {
       return false;
     }
-
+  
     // Experience filter
     if (filters.experience && (job.experienceRange.min > filters.experience || job.experienceRange.max < filters.experience)) {
       return false;
     }
-
+  
     // Salary range filter
     if (filters.minSalary && job.salaryRange.min < filters.minSalary) {
       return false;
@@ -76,13 +76,23 @@ function App() {
     if (filters.maxSalary && job.salaryRange.max > filters.maxSalary) {
       return false;
     }
-
+  
     // Checkboxes
     if (filters.topApplicant && !job.topApplicant) return false;
     if (filters.hasVerifications && !job.verified) return false;
     if (filters.easyApply && !job.easyApply) return false;
     if (filters.fairChance && !job.fairChance) return false;
-
+  
+    // **Skills filter**
+    if (filters.skills.length > 0) {
+      const jobSkillsLower = job.skills.map(skill => skill.toLowerCase());
+      const filterSkillsLower = filters.skills.map(skill => skill.toLowerCase());
+      const hasMatchingSkills = filterSkillsLower.every(skill => jobSkillsLower.includes(skill));
+      if (!hasMatchingSkills) {
+        return false;
+      }
+    }
+  
     return true;
   });
 
@@ -91,11 +101,11 @@ function App() {
       <Header keyword={filters.keyword} location={filters.location} onFilterChange={handleFilterChange} />
 
       <div className="main-container">
-      <QuickFilters
-        filters={filters}
-        onFilterChange={handleFilterChange}
-        onOpenAllFilters={toggleFilters} // Use toggle function here
-      />
+        <QuickFilters
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onOpenAllFilters={toggleFilters}
+        />
 
         <div className="main-content">
           <div className="job-listings-panel">            

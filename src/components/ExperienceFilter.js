@@ -4,7 +4,6 @@ import React from 'react';
 function ExperienceFilter({ experience, onChange }) {
   return (
     <div>
-      <label htmlFor="experience">Experience (Years)</label>
       <input
         type="number"
         id="experience"

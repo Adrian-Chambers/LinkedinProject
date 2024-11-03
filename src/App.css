@@ -5,7 +5,6 @@
   padding: 0;
 }
 
-
 body {
   font-family: Arial, sans-serif;
   color: #333;
@@ -57,7 +56,6 @@ header {
   flex-grow: 1;
   height: 36px;
 }
-
 
 .navbar {
   display: flex;
@@ -137,14 +135,12 @@ header {
   display: block;
   background-color: transparent;
   appearance: none;
-  -webkit-appearance: none;
   padding: 0;
   margin: 0;
   box-shadow: none;
   font-size: 0.9rem;
   width: 100%;
 }
-
 
 .search-icon,
 .location-icon {
@@ -188,7 +184,7 @@ header {
 .quick-filters {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
-  padding: 0.5rem 0; /* Vertical padding */
+  padding: 0.5rem 0;
 }
 
 .filters-container {
@@ -250,273 +246,6 @@ header {
 }
 
 /* Filters Overlay Styling */
-.filters-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100%;
-  background-color: #ffffff;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  z-index: 1000;
-  overflow-y: auto;
-}
-
-.close-filters-button {
-  background-color: #0073b1;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-
-
-/* Dropdown Menu */
-.filter-group {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 0.5rem 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  width: max-content;
-  min-width: 160px;
-}
-
-/* Dropdown Menu Items */
-.dropdown-item {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  color: #333;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #f3f2ef;
-}
-
-/* Main Content Layout */
-.main-content {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* Job Listings Panel */
-.job-listings-panel {
-  width: 100%;
-  max-width: 500px;
-}
-
-.all-filters-button {
-  display: block;
-  background-color: #0a66c2;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.2s ease;
-}
-
-.all-filters-button:hover {
-  background-color: #0a66c2;
-}
-
-/* Style for "No Jobs Found" Message */
-.no-jobs-message {
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
-  margin-top: 20px;
-}
-
-
-/* Job Details Panel */
-.job-details-panel {
-  width: 100%;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-.job-details {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e1e9ee;
-}
-
-.job-details h2 {
-  font-size: 1.4rem;
-  color: #0a66c2;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.job-details p {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 8px 0;
-}
-
-/* Job Details Info Section */
-.job-details-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.job-details-info p {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.job-details-info p strong {
-  font-weight: 600;
-  color: #333;
-}
-
-/* Skills Input */
-.filter-section input[type="text"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 0.9rem;
-}
-
-/* Skills List */
-/* Skills List */
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-/* Skill Tag */
-.skills-list .skill-tag {
-  display: flex;
-  align-items: center;
-  background-color: #e1e9ee;
-  color: #333;
-  padding: 4px 8px;
-  border-radius: 15px;
-  font-size: 0.85rem;
-}
-
-/* Specific styling for the 'X' button inside skill-tag */
-.skills-list .skill-tag button {
-  background: none;
-  border: none;
-  color: #555;
-  font-size: 0.7rem; /* Make the 'X' smaller */
-  padding: 0; /* Remove any extra padding */
-  margin-left: 4px; /* Space between text and 'X' */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-/* Preferences Section */
-.job-details-preferences {
-  margin-top: 20px;
-}
-
-.job-details-preferences h4 {
-  font-size: 1rem;
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.job-details-preferences p {
-  font-size: 0.85rem;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 5px 0;
-}
-
-/* Job Card Styling */
-.job-card {
-  background-color: #fff;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: 1px solid #e1e9ee;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
-}
-
-.job-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.job-card h3 {
-  color: #0a66c2;
-  font-weight: bold;
-}
-
-.select-job-message {
-  color: #666;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Skills Styling in Job Card */
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.skill-tag {
-  display: flex;
-  align-items: center;
-  background-color: #e1e9ee;
-  color: #333;
-  padding: 4px 8px;
-  border-radius: 15px;
-  font-size: 0.85rem;
-}
-
-.skill-tag button {
-  background: none;
-  border: none;
-  color: #555;
-  font-size: 0.7rem;
-  padding: 0;
-  margin-left: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
 /* Filters Overlay Styling */
 .filters-overlay {
   position: fixed;
@@ -545,11 +274,16 @@ header {
   margin-bottom: 20px;
 }
 
-/* Individual Filter Styling */
+/* Filters Sidebar */
 .filters {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.filters h3 {
+  margin-bottom: 1rem;
+  color: #0a66c2;
 }
 
 .filters label {
@@ -595,7 +329,61 @@ header {
   font-weight: bold;
 }
 
-/* Buttons */
+/* Skills Section */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.skills-list .skill-tag {
+  display: flex;
+  align-items: center;
+  background-color: #e1e9ee;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+.skills-list .skill-tag button {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.7rem;
+  padding: 0;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+/* Other Preferences Checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #0a66c2;
+}
+
+.checkbox-item label {
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+/* Button Styling */
 .filters button,
 .close-filters-button {
   padding: 12px 20px;
@@ -620,32 +408,221 @@ header {
   margin-top: 20px;
 }
 
-/* Checkboxes Section */
-.checkbox-group {
+/* Skill Tag Input */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.skill-tag {
+  background-color: #e1e9ee;
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.close-filters-button {
+  background-color: #0073b1;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f2ef;
+}
+
+/* Main Content Layout */
+.main-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Job Listings Panel */
+.job-listings-panel {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Job Card Styling */
+.job-card {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e1e9ee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.job-card h3 {
+  font-size: 1.1rem;
+  color: #0a66c2;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.job-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+/* Style for "No Jobs Found" Message */
+.no-jobs-message {
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.all-filters-button {
+  display: block;
+  background-color: #0a66c2;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.all-filters-button:hover {
+  background-color: #0a66c2;
+}
+
+.job-preference-options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
+  margin-top: 8px;
 }
 
-.checkbox-group div {
+.job-preference-option {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.job-preference-option:hover {
+  background-color: #e0e0e0;
+}
+
+.job-preference-option.active {
+  background-color: #0073b1;
+  color: #fff;
+  border-color: #005582;
+}
+
+/* Job Details Panel */
+.job-details-panel {
+  width: 100%;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.job-details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e9ee;
+}
+
+.job-details h2 {
+  font-size: 1.4rem;
+  color: #0a66c2;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.job-details p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 8px 0;
+}
+
+.job-details-info p strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Skills List */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.skills-list .skill-tag {
+  display: flex;
+  align-items: center;
+  background-color: #e1e9ee;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+/.skills-list .skill-tag button {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.7rem;
+  padding: 0;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+/* Other Preferences Checkboxes */
+.other-preferences-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.checkbox-item {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
 }
 
-.checkbox-group input[type="checkbox"] {
+.checkbox-item input[type="checkbox"] {
   width: 16px;
   height: 16px;
   margin: 0;
   accent-color: #0a66c2;
 }
 
-.checkbox-group label {
+.checkbox-item label {
   font-size: 0.85rem;
   color: #555;
+  margin: 0;
   cursor: pointer;
-  margin-left: 6px;
 }
-
 
 /* Skill Tag Input */
 .skill-tags {

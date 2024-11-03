@@ -22,11 +22,10 @@ function SkillsFilter({ skills, onChange }) {
 
   return (
     <div className="filter-section">
-      <label>Skills</label>
       <input
         type="text"
         value={skillInput}
-        placeholder="Enter a skill and press Enter"
+        placeholder="Type a skill and press Enter"
         onChange={(e) => setSkillInput(e.target.value)}
         onKeyDown={handleKeyDown}
       />

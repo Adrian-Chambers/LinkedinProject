@@ -1,0 +1,213 @@
+[
+    {
+      "title": "Software Engineer",
+      "company": "Tech Innovations",
+      "location": "San Francisco, CA",
+      "type": "Hybrid",
+      "experienceRange": { "min": 2, "max": 5 },
+      "salaryRange": { "min": 80000, "max": 100000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "Remote",
+        "wednesday": "On-Site",
+        "thursday": "Remote",
+        "friday": "On-Site"
+      },
+      "skills": ["JavaScript", "React", "Node.js", "Git"],
+      "verified": false,
+      "easyApply": true,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Join our team to develop innovative software solutions for a fast-growing tech company. Work in a hybrid environment with flexible remote options."
+    },
+    {
+      "title": "Data Scientist",
+      "company": "Data Pros",
+      "location": "New York, NY",
+      "type": "Remote",
+      "experienceRange": { "min": 3, "max": 6 },
+      "salaryRange": { "min": 95000, "max": 120000 },
+      "schedule": {
+        "monday": "Remote",
+        "tuesday": "Remote",
+        "wednesday": "Remote",
+        "thursday": "Remote",
+        "friday": "Remote"
+      },
+      "skills": ["Python", "Machine Learning", "Data Analysis", "Pandas", "Scikit-Learn"],
+      "verified": true,
+      "easyApply": false,
+      "fairChance": false,
+      "topApplicant": true,
+      "description": "Analyze large datasets and build machine learning models to drive business decisions. Work remotely with a collaborative and innovative data science team."
+    },
+    {
+      "title": "Product Manager",
+      "company": "NextGen Products",
+      "location": "Austin, TX",
+      "type": "On-Site",
+      "experienceRange": { "min": 5, "max": 10 },
+      "salaryRange": { "min": 100000, "max": 140000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "On-Site",
+        "wednesday": "On-Site",
+        "thursday": "On-Site",
+        "friday": "On-Site"
+      },
+      "skills": ["Product Management", "Agile", "User Research", "Roadmap Development"],
+      "verified": true,
+      "easyApply": true,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Lead the development and launch of new products. Collaborate with cross-functional teams to deliver user-centered solutions in an on-site environment."
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Creative Coders",
+      "location": "Los Angeles, CA",
+      "type": "Hybrid",
+      "experienceRange": { "min": 2, "max": 4 },
+      "salaryRange": { "min": 70000, "max": 95000 },
+      "schedule": {
+        "monday": "Remote",
+        "tuesday": "On-Site",
+        "wednesday": "Remote",
+        "thursday": "On-Site",
+        "friday": "Remote"
+      },
+      "skills": ["HTML", "CSS", "JavaScript", "Vue.js", "Responsive Design"],
+      "verified": false,
+      "easyApply": true,
+      "fairChance": false,
+      "topApplicant": true,
+      "description": "Create visually appealing and user-friendly frontends for various projects. Enjoy the flexibility of a hybrid work environment and a creative work culture."
+    },
+    {
+      "title": "Marketing Specialist",
+      "company": "Bright Media",
+      "location": "Chicago, IL",
+      "type": "On-Site",
+      "experienceRange": { "min": 1, "max": 3 },
+      "salaryRange": { "min": 50000, "max": 70000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "On-Site",
+        "wednesday": "On-Site",
+        "thursday": "On-Site",
+        "friday": "On-Site"
+      },
+      "skills": ["SEO", "Content Creation", "Social Media", "Analytics"],
+      "verified": true,
+      "easyApply": true,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Develop and execute marketing campaigns to increase brand awareness. Work on-site with a dynamic team in a fast-paced media company."
+    },
+    {
+      "title": "Backend Developer",
+      "company": "Server Solutions",
+      "location": "Seattle, WA",
+      "type": "Remote",
+      "experienceRange": { "min": 3, "max": 5 },
+      "salaryRange": { "min": 90000, "max": 115000 },
+      "schedule": {
+        "monday": "Remote",
+        "tuesday": "Remote",
+        "wednesday": "Remote",
+        "thursday": "Remote",
+        "friday": "Remote"
+      },
+      "skills": ["Python", "Django", "REST APIs", "SQL", "AWS"],
+      "verified": true,
+      "easyApply": false,
+      "fairChance": false,
+      "topApplicant": false,
+      "description": "Develop and maintain backend systems for large-scale applications. Work remotely with a team that values innovation and reliability."
+    },
+    {
+      "title": "HR Coordinator",
+      "company": "People First",
+      "location": "Denver, CO",
+      "type": "On-Site",
+      "experienceRange": { "min": 1, "max": 3 },
+      "salaryRange": { "min": 45000, "max": 60000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "On-Site",
+        "wednesday": "On-Site",
+        "thursday": "On-Site",
+        "friday": "On-Site"
+      },
+      "skills": ["Recruitment", "Employee Relations", "Scheduling", "Microsoft Office"],
+      "verified": false,
+      "easyApply": true,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Coordinate recruitment and employee relations tasks in an on-site setting. Join a supportive team that prioritizes people and employee well-being."
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "CloudOps Solutions",
+      "location": "Remote",
+      "type": "Remote",
+      "experienceRange": { "min": 4, "max": 8 },
+      "salaryRange": { "min": 100000, "max": 130000 },
+      "schedule": {
+        "monday": "Remote",
+        "tuesday": "Remote",
+        "wednesday": "Remote",
+        "thursday": "Remote",
+        "friday": "Remote"
+      },
+      "skills": ["AWS", "Kubernetes", "Docker", "CI/CD", "Infrastructure as Code"],
+      "verified": true,
+      "easyApply": false,
+      "fairChance": false,
+      "topApplicant": true,
+      "description": "Implement and maintain CI/CD pipelines and cloud infrastructure for high-availability applications. Work remotely with cutting-edge cloud technologies."
+    },
+    {
+      "title": "Graphic Designer",
+      "company": "DesignWorks",
+      "location": "Portland, OR",
+      "type": "Hybrid",
+      "experienceRange": { "min": 2, "max": 5 },
+      "salaryRange": { "min": 60000, "max": 80000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "Remote",
+        "wednesday": "On-Site",
+        "thursday": "Remote",
+        "friday": "On-Site"
+      },
+      "skills": ["Adobe Photoshop", "Illustrator", "UI/UX", "Branding"],
+      "verified": true,
+      "easyApply": true,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Create stunning visual designs for our clients’ projects. Enjoy the flexibility of a hybrid work model and work in a highly creative team."
+    },
+    {
+      "title": "Project Manager",
+      "company": "BuildIt Solutions",
+      "location": "Dallas, TX",
+      "type": "On-Site",
+      "experienceRange": { "min": 3, "max": 7 },
+      "salaryRange": { "min": 80000, "max": 105000 },
+      "schedule": {
+        "monday": "On-Site",
+        "tuesday": "On-Site",
+        "wednesday": "On-Site",
+        "thursday": "On-Site",
+        "friday": "On-Site"
+      },
+      "skills": ["Project Management", "Budgeting", "Scheduling", "Microsoft Project"],
+      "verified": false,
+      "easyApply": false,
+      "fairChance": true,
+      "topApplicant": false,
+      "description": "Oversee project planning, execution, and delivery for construction projects. Join a dedicated team that values project efficiency and quality."
+    }
+  ]
+  

@@ -141,16 +141,24 @@ function Filters({
         </button>
 
         <div className="saved-filters">
-          <h4>Saved Filters</h4>
-          <ul>
-            {savedFilters.map((savedFilter, index) => (
-              <li key={index}>
-                <span>{savedFilter.filterName}</span>
-                <button onClick={() => onApplySavedFilter(savedFilter)}>Apply</button>
-                <button onClick={() => onDeleteSavedFilter(savedFilter.filterName)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+          <h4>Saved Filters
+            <span className="info-icon" title="Save your filter settings for quick access in the future. Use the 'Save Filters' button above to save your current filters. You can apply or delete saved filters from the list below.">ℹ️</span>
+          </h4>
+          {savedFilters.length > 0 ? (
+            <ul>
+              {savedFilters.map((savedFilter, index) => (
+                <li key={index}>
+                  <span>{savedFilter.filterName}</span>
+                  <button onClick={() => onApplySavedFilter(savedFilter)}>Apply</button>
+                  <button onClick={() => onDeleteSavedFilter(savedFilter.filterName)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="no-saved-filters-text">
+              No saved filters. You can save your current filters for future use by clicking on the "Save Filters" button.
+            </p>
+          )}
         </div>
       </div>
     </aside>

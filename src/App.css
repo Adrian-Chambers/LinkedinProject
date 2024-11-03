@@ -756,3 +756,14 @@ header {
   color: #0073b1 !important; /* Add a hover color */
 }
 
+.info-icon {
+  font-size: 1rem;
+  color: #0073b1;
+  cursor: pointer;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.info-icon:hover {
+  color: #005582; /* Optional: change color on hover */
+}

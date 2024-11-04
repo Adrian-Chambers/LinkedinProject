@@ -459,12 +459,24 @@ header {
 
 /* Job Listings Panel */
 .job-listings-panel {
-  height: 70vh;
-  overflow-y: auto;
+  width: 400px;
+  max-width: 100%;
   padding: 10px;
-  box-sizing: border-box;
+  overflow-y: auto; 
+  max-height: 80vh; 
+  overflow-y: scroll; 
+  scrollbar-width: thin;
 }
-
+.job-listings-panel::-webkit-scrollbar {
+  width: 8px; 
+}
+.job-listings-panel::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.job-listings-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 /* Job Card Styling */
 .job-card {
@@ -476,7 +488,11 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: box-shadow 0.3s ease;
+  width: 100%; 
+  max-width: 380px;
+  box-sizing: border-box;
 }
+
 
 .job-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

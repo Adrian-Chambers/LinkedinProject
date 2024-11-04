@@ -48,6 +48,18 @@ function App() {
   });  
   const [selectedJob, setSelectedJob] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  const stateMapping = {
+    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+    CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+    HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+    KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+    MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
+    MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+    NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+    OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
+    VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming"
+  };
 
   useEffect(() => {
     fetch('/jobs.json')
@@ -92,8 +104,31 @@ function App() {
     if (keyword && !job.title.toLowerCase().includes(keyword.toLowerCase())) return false;
   
     // Location filter
-    if (location && !job.location.toLowerCase().includes(location.toLowerCase())) return false;
-  
+    if (location) {
+      const inputLocation = location.trim().toLowerCase();
+      const jobLocation = job.location.toLowerCase();
+
+      const locationParts = jobLocation.split(',').map(part => part.trim());
+      const jobCity = locationParts[0];
+      const jobState = locationParts[1]; 
+
+      const stateMatch = Object.entries(stateMapping).find(([abbr, fullName]) => {
+        return (
+          inputLocation === abbr.toLowerCase() || inputLocation === fullName.toLowerCase()
+        );
+      });
+
+      if (stateMatch) {
+        const [matchedAbbr, matchedFullName] = stateMatch;
+        const isMatch = 
+          jobState === matchedAbbr.toLowerCase() || jobState === matchedFullName.toLowerCase();
+
+        if (!isMatch) return false;
+      } else {
+        if (!jobCity.includes(inputLocation)) return false;
+      }
+    }
+      
     // Job preference filter (on-site, remote, hybrid, all)
     if (jobPreference !== 'all' && job.type.toLowerCase() !== jobPreference.toLowerCase()) return false;
   
